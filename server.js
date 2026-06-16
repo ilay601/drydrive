@@ -6,7 +6,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const PORT = 3000; // השרת ירוץ על פורט 3000 במחשב
+const PORT = process.env.PORT || 3000;
 
 // 2. הגדרות אבטחה ואישור קבלת מידע (Middleware)
 app.use(cors()); // מאפשר לאפליקציה שלך להתחבר לשרת בצורה מאובטחת
