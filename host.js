@@ -1,5 +1,5 @@
 /**
- * DryDrive Host Engine - מנוע העלאת מקלחות ורכיב מיקום GPS אמיתי (גרסה יציבה)
+ * DryDrive Host Engine - מנוע העלאת מקלחות ורכיב מיקום GPS אמיתי (גרסה יציבה - מותאם למלונות)
  */
 
 function createHostScreenStructure() {
@@ -15,16 +15,16 @@ function createHostScreenStructure() {
     hostSection.innerHTML = `
         <div class="host-form-container" style="padding-bottom: 30px;">
             <div style="text-align: center; margin-bottom: 20px;">
-                <i class="fa-solid fa-house-medical" style="font-size: 2.2rem; color: #0284c7; margin-bottom: 5px;"></i>
+                <i class="fa-solid fa-hotel" style="font-size: 2.2rem; color: #0284c7; margin-bottom: 5px;"></i>
                 <h2 style="color: #0f172a; margin: 0;">הוסף את תחנת הרענון שלך</h2>
-                <p style="color: #64748b; font-size: 0.85rem; margin-top: 5px;">הרווח כסף מהמקלחת הפנויה שלך בשעות הים</p>
+                <p style="color: #64748b; font-size: 0.85rem; margin-top: 5px;">הציעו את מקלחות הספא או הבריכה של המלון שלכם לרענון מהיר</p>
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 12px; background: white; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0;">
                 
                 <div>
-                    <label style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 4px;">שם המארח או העסק:</label>
-                    <input type="text" id="new-host-name" placeholder="לדוגמה: הדירה של ניר קו ראשון" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem;">
+                    <label style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 4px;">שם המלון או בית העסק:</label>
+                    <input type="text" id="new-host-name" placeholder="לדוגמה: מלון דן תל אביב / הילטון ספא" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem;">
                 </div>
 
                 <div>
@@ -37,19 +37,18 @@ function createHostScreenStructure() {
                     </select>
                 </div>
 
-                <!-- חיווט פיזי של שדה העיר בתוך ה-HTML של הממשק -->
                 <div>
-                    <label style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 4px;">באיזו עיר התחנה נמצאת?</label>
-                    <input type="text" id="new-host-city" placeholder="לדוגמה: ראשון לציון, רחובות, נתניה" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem;">
+                    <label style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 4px;">באיזו עיר המלון נמצא?</label>
+                    <input type="text" id="new-host-city" placeholder="לדוגמה: תל אביב, נתניה, ראשון לציון, אילת" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem;">
                 </div>
 
                 <div>
                     <label style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 6px;">מיקום גיאוגרפי מדויק (GPS):</label>
                     <button id="gps-capture-btn" class="primary-btn" style="background: #3b82f6; padding: 10px; font-size: 0.9rem; margin-bottom: 8px; box-shadow: none;">
                         <i class="fa-solid fa-location-crosshairs"></i>
-                        <span>📍 מצא את המיקום שלי אוטומטית</span>
+                        <span>📍 לחץ לסנכרון מיקום מלוויין</span>
                     </button>
-                    <input type="text" id="new-host-dist" placeholder="מרחק חופשי (לדוגמה: 2 דקות הליכה)" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem;">
+                    <input type="text" id="new-host-dist" placeholder="מרחק מהחוף (לדוגמה: 2 דקות הליכה)" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem;">
                     <div id="gps-status" style="font-size: 0.75rem; color: #64748b; margin-top: 4px; font-weight: 500;">המיקום הגיאוגרפי לא נקלט עדיין</div>
                 </div>
 
@@ -59,9 +58,9 @@ function createHostScreenStructure() {
                 </div>
 
                 <div>
-                    <label style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 4px;">מה אתה מספק במקלחת? (סמן V):</label>
+                    <label style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 4px;">מה המלון מספק במקלחת? (סמן V):</label>
                     <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 5px; font-size: 0.9rem;">
-                        <label><input type="checkbox" class="host-amenity" value="מקלחת חמה"> מקלחת מים חמים 🚿</label>
+                        <label><input type="checkbox" class="host-amenity" value="מקלחת חמה" checked> מקלחת מים חמים 🚿</label>
                         <label><input type="checkbox" class="host-amenity" value="מגבת נקייה"> מגבת נקייה ויבשה 🧼</label>
                         <label><input type="checkbox" class="host-amenity" value="שמפו וסבון"> שמפו וסבון גוף 🧴</label>
                         <label><input type="checkbox" class="host-amenity" value="פן לשיער"> מייבש שיער (פן) 💨</label>
@@ -69,7 +68,7 @@ function createHostScreenStructure() {
                 </div>
 
                 <button id="publish-station-btn" class="primary-btn" style="margin-top: 5px; background: #16a34a; box-shadow: 0 10px 20px -5px rgba(22, 163, 74, 0.3);">
-                    <span>פרסם תחנה באפליקציה עכשיו</span>
+                    <span>פרסם תחנה במלון עכשיו</span>
                     <i class="fa-solid fa-cloud-arrow-up"></i>
                 </button>
             </div>
@@ -86,8 +85,8 @@ function createHostScreenStructure() {
         hostTab.className = 'nav-item';
         hostTab.setAttribute('data-target', 'screen-host-form');
         hostTab.innerHTML = `
-            <i class="fa-solid fa-house-medical"></i>
-            <span>להיות מארח</span>
+            <i class="fa-solid fa-hotel"></i>
+            <span>רשום מלון</span>
         `;
         bottomNav.appendChild(hostTab);
     }
@@ -139,7 +138,7 @@ function handlePublishNewHost() {
     const selectedFeatures = Array.from(checkedBoxes).map(box => box.value);
 
     if (!name || !distText || !price || !cityText) {
-        alert("⚠️ נא למלא את כל שדות החובה (כולל שם העיר) כדי לפרסם את המקלחת!");
+        alert("⚠️ נא למלא את כל שדות החובה כדי לפרסם את תחנת המלון!");
         return;
     }
 
@@ -147,7 +146,7 @@ function handlePublishNewHost() {
         id: "user_host_" + Date.now(),
         hostName: name,
         hostCity: cityText,
-        type: "עמדת רענון שיתופית",
+        type: "מתחם מלון / ספא",
         distance: distText,
         price: price,
         rating: 5.0,
@@ -161,7 +160,7 @@ function handlePublishNewHost() {
     }
     dryDriveData[beachId].unshift(newStationObject);
 
-    alert(`🎉 המקלחת שלך פורסמה בהצלחה וממוינת לפי מנוע המלצות הערים!`);
+    alert(`🎉 תחנת הרענון של המלון פורסמה בהצלחה וממוינת במערכת!`);
     
     // איפוס מוחלט של הטופס
     document.getElementById('new-host-name').value = "";
