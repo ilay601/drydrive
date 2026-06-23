@@ -587,3 +587,114 @@
         };
     }, 500);
 </script>
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DryDrive - מקלחות רענון במלונות</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">DryDrive</div>
+        <p>מעברים חלקים מהים... הביתה</p>
+    </header>
+
+    <main>
+        <!-- אזור חיפוש מקלחות רענון -->
+        <section class="search-section">
+            <h2>רטובים ומלוחים?</h2>
+            <p>מצאו מרחב בטוח לרענון, מקלחת חמה ומגבת יבשה במלון קרוב, דקות מהחוף שלכם.</p>
+            
+            <div class="search-container">
+                <select id="beach-select">
+                    <option value="">לאיזה חוף אתם קרובים?</option>
+                    <option value="חוף פלמחים">חוף פלמחים</option>
+                    <option value="חוף גורדון">חוף גורדון</option>
+                    <option value="חוף סירונית">חוף סירונית</option>
+                    <option value="חוף מיקה (אילת)">חוף מיקה (אילת)</option>
+                </select>
+                <button id="search-btn">מצא מקלחת פנויה במלון</button>
+            </div>
+
+            <!-- פילטרים -->
+            <div class="filters">
+                <label>
+                    <input type="checkbox" id="female-only"> הצג רק מלונות עם מתחם נשים נפרד (לסיכון בטיחותי)
+                </label>
+            </div>
+        </section>
+
+        <!-- תוצאות חיפוש -->
+        <section class="results-section">
+            <h3 id="results-count">0 מקלחות פנויות נמצאו</h3>
+            <div id="hosts-container">
+                <!-- כאן יופיעו המלונות שימצאו -->
+            </div>
+        </section>
+
+        <!-- טופס רישום מלון חדש (התאמה מדויקת לצילום המסך שלך) -->
+        <section class="host-registration">
+            <h2>הוסף את תחנת הרענון שלך</h2>
+            
+            <form id="register-form">
+                <label for="host-name">שם המארח / שם העסק:</label>
+                <input type="text" id="host-name" placeholder="לדוגמה: מלון דן תל אביב / הילטון ספא" required>
+                
+                <label for="host-gender">מגדר המארח/ת (לסינון בטיחותי):</label>
+                <select id="host-gender" required>
+                    <option value="גבר">גבר</option>
+                    <option value="אישה">אישה</option>
+                    <option value="עסק/מלון">מתחם מלון / עסק</option>
+                </select>
+
+                <label for="host-beach">שיוך לחוף הקרוב:</label>
+                <select id="host-beach" required>
+                    <option value="חוף פלמחים">חוף פלמחים</option>
+                    <option value="חוף גורדון">חוף גורדון</option>
+                    <option value="חוף סירונית">חוף סירונית</option>
+                    <option value="חוף מיקה (אילת)">חוף מיקה (אילת)</option>
+                </select>
+
+                <label for="host-city">באיזו עיר התחנה נמצאת?</label>
+                <input type="text" id="host-city" placeholder="לדוגמה: ראשון לציון, נתניה, תל אביב" required>
+
+                <label for="host-address">כתובת מלאה ושם המלון:</label>
+                <input type="text" id="host-address" placeholder="לדוגמה: רחוב הירקון 99, קומת ספא" required>
+
+                <div class="gps-section">
+                    <p>סנכרון מיקום GPS של הדירה:</p>
+                    <button type="button" id="gps-btn">לחץ לסנכרון מיקום מלוויין</button>
+                    <span id="gps-status">המיקום הגיאוגרפי לא אומת עדיין</span>
+                </div>
+
+                <label for="host-price">מחיר ל-15 דקות (ב-₪):</label>
+                <input type="number" id="host-price" value="40" required>
+
+                <div class="amenities-selection">
+                    <p>מה אתה מספק?</p>
+                    <label><input type="checkbox" id="reg-shower" checked> מקלחת מים חמים 🚿</label>
+                    <label><input type="checkbox" id="reg-towel"> מגבת נקייה ויבשה 🧼</label>
+                </div>
+
+                <button type="submit" class="submit-btn">אמת זהות ופרסם תחנה</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- תפריט תחתון קבוע כמו במסך שלך -->
+    <footer>
+        <nav class="bottom-nav">
+            <a href="#search-section">ראשי</a>
+            <a href="#results-section">מקלחות</a>
+            <a href="#host-registration">להיות מארח</a>
+        </nav>
+    </footer>
+
+    <script src="app.js"></script>
+    <script src="booking.js"></script>
+    <script src="host.js"></script>
+    <script src="geo-match.js"></script>
+</body>
+</html>
